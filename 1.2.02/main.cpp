@@ -6,7 +6,7 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    char oneWord[30];
+    std::string oneWord;
 
     std::cout << "Введите слово:\n";
     std::cin >> oneWord;

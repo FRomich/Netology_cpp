@@ -4,7 +4,7 @@ int main()
 {
     std::setlocale(LC_ALL, "Russian");
 
-    double number;
+    int number;
 
     std::cout << "Введите число:\n";
     std::cin >> number;
