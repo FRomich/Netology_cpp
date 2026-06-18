@@ -5,17 +5,12 @@ int main()
     std::setlocale(LC_ALL, "Russian");
 
     int number = 0;
-    int sumDigit = 0;
 
     std::cout << "Введите целое число:\n";
     std::cin >> number;
 
-    while (number / 10 != 0)
+    for (int i = 0; i < 10; i++)
     {
-        sumDigit += number % 10;
-        number = number / 10;
+        std::cout << number << " x "  << i << " = " << number*i << std::endl;
     }
-
-    std::cout << "Сумма цифр: " << abs(sumDigit + number);
 }
-
