@@ -11,6 +11,6 @@ int main()
 
     for (int i = 0; i < 10; i++)
     {
-        std::cout << number << " x "  << i << " = " << number*i << std::endl;
+        std::cout << number << " x "  << i << " = " << number * i << std::endl;
     }
 }
