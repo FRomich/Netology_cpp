@@ -20,11 +20,13 @@ int main()
 
     myPow(value, power);
     
-	value = 3, power = 3;
+	value = 3;
+	power = 3;
 
 	myPow(value, power);
 	
-	value = 4, power = 4;
+	value = 4;
+	power = 4;
 
 	myPow(value, power);
 }
