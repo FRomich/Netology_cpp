@@ -3,9 +3,18 @@
 
 std::string numbersFibonacci (int count)
 {
+    if (count == 0)
+    {
+        return "";
+    }
+    else if (count == 1)
+    {
+        return "0";
+    }
+
     long long previous = 0;
     long long forward = 1;
-    std::string result { std::to_string(previous) + " " + std::to_string(forward) + " " };
+    std::string result 	{ std::to_string(previous) + " " + std::to_string(forward) + " " };
 
     for (int i = 2; i < count; i++)
     {
