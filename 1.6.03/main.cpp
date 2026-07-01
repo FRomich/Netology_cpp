@@ -1,28 +1,12 @@
 ﻿#include <iostream>
 #include <string>
 
-std::string numbersFibonacci (int count)
+std::string numbersFibonacciRecursive(int count, int index = 0, long long a = 0, long long b = 1)
 {
-    if (count <= 0)
-    {
-        return "";
-    }
-    else if (count == 1)
-    {
-        return "0";
-    }
+	if (index >= count)
+		return "";
 
-    long long previous = 0;
-    long long forward = 1;
-    std::string result 	{ std::to_string(previous) + " " + std::to_string(forward) + " " };
-
-    for (int i = 2; i < count; i++)
-    {
-        std::swap(previous, forward);
-        forward += previous;
-        result += std::to_string(forward) + " ";
-    }
-    return  result;
+	return std::to_string(a) + (index + 1 == count ? "" : " ") + numbersFibonacciRecursive(count, index + 1, b, a + b);
 }
 
 int main()
@@ -33,6 +17,7 @@ int main()
 
     std::cout << "Введите число: ";
     std::cin >> countFibonacci;
-    std::cout << "Числа Фибоначчи: " << numbersFibonacci(countFibonacci);
+
+    std::cout << "Числа Фибоначчи: " << numbersFibonacciRecursive(countFibonacci) << "\n";
 }
 
