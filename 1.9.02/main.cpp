@@ -1,12 +1,14 @@
 ﻿#include <iostream>
 
-void swap (int* a, int* b)
+namespace
 {
-    int tmp = *a;
-    *a = *b;
-    *b = tmp;
+    static void  swap(int* a, int* b)
+    {
+        int tmp = *a;
+        *a = *b;
+        *b = tmp;
+    }
 }
-
 int main()
 {
     int a = 5;

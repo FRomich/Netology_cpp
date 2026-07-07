@@ -1,12 +1,15 @@
 ﻿#include <iostream>
 
-void print(int* array, int sizeArray)
+namespace 
 {
-	for (int i = 0; i < sizeArray; i++)
+	static void print(const int* array, int sizeArray)
 	{
-		std::cout << array[i] << " ";
+		while (sizeArray--)
+		{
+			std::cout << *array++ << " ";
+		}
+		std::cout << "\n";
 	}
-	std::cout << "\n";
 }
 
 int main()
