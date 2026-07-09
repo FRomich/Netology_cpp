@@ -2,9 +2,9 @@
 
 namespace 
 {
-	int* createDynArrayZero(int sizeArray)
+	int* createDynArrayZero(const int* sizeArray)
 	{
-        return new int[sizeArray]{};
+        return new int[*sizeArray]{};
 	}
 }
 
@@ -18,7 +18,7 @@ int main()
     std::cout << "Введите размер массива: ";
     std::cin >> sizeArray;
 
-    int* dynArrayZero = createDynArrayZero(sizeArray);
+    int* dynArrayZero = createDynArrayZero(&sizeArray);
 
     std::cout << "Массив: ";
     for (int i = 0; i < sizeArray; i++)
