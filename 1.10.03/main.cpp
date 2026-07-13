@@ -9,7 +9,7 @@ namespace
 
         for (int i = 0; i < *rows; i++)
         {
-            twoDimArray[i] = new int[*cols + 1];
+            twoDimArray[i] = new int[*cols];
         }
 
         return twoDimArray;
