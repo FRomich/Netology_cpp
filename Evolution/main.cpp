@@ -26,7 +26,7 @@ namespace
 		int col;
 		int row;
 
-		while (file >> col >> row)
+		while (file >> row >> col)
 		{
 			if (row >= 0 && row < rows &&
 				col >= 0 && col < cols &&
@@ -71,11 +71,11 @@ namespace
 			{
 				if (gameBoard[i][j])
 				{
-					allBoardString += "*";
+					allBoardString += "* ";
 				}
 				else
 				{
-					allBoardString += "-";
+					allBoardString += "- ";
 				}
 				
 			}
@@ -177,7 +177,7 @@ int main(int argc, char** argv)
 
 	int rows = 0;
 	int cols = 0; 
-	int generation = 0;
+	int generation = 1;
 	int aliveCells = 0;
 
 	bool** gameBoard = readInitFile(pathInitFile, rows, cols, aliveCells);
@@ -202,12 +202,19 @@ int main(int argc, char** argv)
 		gameBoardDelete(newBoard, rows);
 		return 1;
 	}
+	gameBoardDrawing(gameBoard, rows, cols, generation, aliveCells);
 
 	while (true)
 	{
-		gameBoardDrawing(gameBoard, rows, cols, generation, aliveCells);
+		Sleep(500);
 
 		bool changed = nextGeneration(gameBoard, newBoard, rows, cols, aliveCells);
+
+		swapBoard(gameBoard, newBoard);
+
+		generation++;
+
+		gameBoardDrawing(gameBoard, rows, cols, generation, aliveCells);
 
 		if (!changed)
 		{
@@ -215,17 +222,13 @@ int main(int argc, char** argv)
 			break;
 		}
 
-		swapBoard(gameBoard, newBoard);
-
-		generation++;
-
 		if (aliveCells < 1)
 		{
 			std::cout << "\nAll cells are dead. Game over\n";
 			break;
 		}
 
-		Sleep(500);
+		
 	}
 
 	gameBoardDelete(gameBoard, rows);
