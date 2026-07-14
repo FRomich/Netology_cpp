@@ -35,7 +35,6 @@ namespace
 				gameBoard[row][col] = true;
 				aliveCells++;
 			}
-
 		}
 
 		return gameBoard;
@@ -76,8 +75,7 @@ namespace
 				else
 				{
 					allBoardString += "- ";
-				}
-				
+				}				
 			}
 			allBoardString += '\n';
 		}
@@ -202,6 +200,7 @@ int main(int argc, char** argv)
 		gameBoardDelete(newBoard, rows);
 		return 1;
 	}
+
 	gameBoardDrawing(gameBoard, rows, cols, generation, aliveCells);
 
 	while (true)
@@ -226,9 +225,7 @@ int main(int argc, char** argv)
 		{
 			std::cout << "\nAll cells are dead. Game over\n";
 			break;
-		}
-
-		
+		}		
 	}
 
 	gameBoardDelete(gameBoard, rows);
