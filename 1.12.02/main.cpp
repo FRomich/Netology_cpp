@@ -23,7 +23,7 @@ int main()
 
     int* arrayElements = new int[countsElements];
 
-    for (int i = 0; i < countsElements; i++)
+    for (int i = 0; i < countsElements; ++i)
     {
 	    if (!(fileIn >> arrayElements[i]))
 	    {
@@ -34,7 +34,7 @@ int main()
 	    }
     }
 
-    for (int i = countsElements - 1; i >= 0; i--)
+    for (int i = countsElements - 1; i >= 0; --i)
     {
         std::cout << arrayElements[i] << " ";
     }

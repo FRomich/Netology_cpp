@@ -18,7 +18,7 @@ namespace
 
 		bool** gameBoard = new bool* [rows];
 
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < rows; ++i)
 		{
 			gameBoard[i] = new bool[cols] {false};
 		}
@@ -45,7 +45,7 @@ namespace
 		if (!gameBoard)
 			return;
 
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < rows; ++i)
 		{
 			delete[] gameBoard[i];
 		}
@@ -64,9 +64,9 @@ namespace
 
 		std::system("cls");
 
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < rows; ++i)
 		{
-			for (int j = 0; j < cols; j++)
+			for (int j = 0; j < cols; ++j)
 			{
 				if (gameBoard[i][j])
 				{
@@ -89,9 +89,9 @@ namespace
 	{
 		int count = 0;
 
-		for (int i = -1; i <= 1; i++)
+		for (int i = -1; i <= 1; ++i)
 		{
-			for (int j = -1; j <= 1; j++)
+			for (int j = -1; j <= 1; ++j)
 			{
 				if (i == 0 && j == 0)
 					continue;
@@ -116,9 +116,9 @@ namespace
 		bool changed = false;
 		aliveCells = 0;
 
-		for (int i = 0; i < rows; i++)
+		for (int i = 0; i < rows; ++i)
 		{
-			for (int j = 0; j < cols; j++)
+			for (int j = 0; j < cols; ++j)
 			{
 				int neighbors = countNeighbors(gameBoard, rows, cols, i, j);
 
@@ -188,7 +188,7 @@ int main(int argc, char** argv)
 
 	bool** newBoard = new bool* [rows];
 
-	for (int i = 0; i < rows; i++)
+	for (int i = 0; i < rows; ++i)
 	{
 		newBoard[i] = new bool[cols] {false};
 	}

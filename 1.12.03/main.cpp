@@ -13,7 +13,7 @@ int main()
 
     int* arrayElements = new int[countsElements];
 
-    for (int i = 0; i < countsElements; i++)
+    for (int i = 0; i < countsElements; ++i)
     {
         std::cout << "arr[" << i << "] = ";
         std::cin >> arrayElements[i];
@@ -21,7 +21,7 @@ int main()
 
     fileOut << countsElements << "\n";
 
-    for (int i = countsElements - 1; i >= 0; i--)
+    for (int i = countsElements - 1; i >= 0; --i)
     {
         fileOut << arrayElements[i] << " ";
     }
