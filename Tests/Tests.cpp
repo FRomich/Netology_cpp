@@ -116,6 +116,24 @@ namespace
         }
         return result;
     }
+
+    static std::string longestCommonPrefix(std::vector<std::string>& strs)
+	{
+        std::string prfx{};
+        size_t n = 0;
+        while (true)
+	    {
+            if (n >= strs[0].size()) return prfx;
+
+        	for (size_t i = 1; i < strs.size(); ++i)
+            {
+                if (n >= strs[i].size() || strs[i][n] != strs[0][n]) return prfx;
+                  
+            }
+            prfx.push_back(strs[0][n]);
+            ++n;
+        }
+    }
 }
 
 
