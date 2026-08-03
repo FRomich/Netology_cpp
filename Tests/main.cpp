@@ -2,6 +2,7 @@
 
 
 #include <iostream>
+#include <stack>
 #include <string>
 #include <unordered_map>
 
@@ -133,6 +134,96 @@ namespace
             prfx.push_back(strs[0][n]);
             ++n;
         }
+    }
+
+    static bool isValid(std::string s) 
+    {
+        std::stack<char> st;
+
+        for (char c : s)
+        {
+            switch (c)
+            {
+            case '(':
+            case '[':
+            case '{':
+                st.push(c);
+                break;
+
+            case ')':
+                if (st.empty() || st.top() != '(')
+                    return false;
+                st.pop();
+                break;
+
+            case ']':
+                if (st.empty() || st.top() != '[')
+                    return false;
+                st.pop();
+                break;
+
+            case '}':
+                if (st.empty() || st.top() != '{')
+                    return false;
+                st.pop();
+                break;
+            }
+        }
+
+        return st.empty();
+    }
+
+    struct ListNode
+	{
+        int val;
+        ListNode* next;
+        ListNode() : val(0), next(nullptr) {}
+        ListNode(int x) : val(x), next(nullptr) {}
+        ListNode(int x, ListNode* next) : val(x), next(next) {}
+    };
+
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
+	{
+        ListNode head;
+    	ListNode* current = &head;
+
+        while (list1 && list2)
+        {
+			if (list1->val <= list2->val)
+			{
+                current->next = list1;
+                list1 = list1->next;
+			}
+			else
+			{
+                current->next = list2;
+                list2 = list2->next;
+			}
+            current = current->next;
+        }
+
+        current->next = list1 ? list1 : list2;
+
+        return head.next;
+    }
+
+    static int removeDuplicates(std::vector<int>& nums)
+	{
+        if (nums.empty())
+            return 0;
+
+        int currentNum = 0;
+
+        for (size_t i = 1; i < nums.size(); ++i)
+        {
+            if (nums[currentNum] != nums[i])
+            {
+                ++currentNum;
+                nums[currentNum] = nums[i];
+            }
+        }
+
+    	return currentNum + 1;
     }
 }
 
