@@ -180,6 +180,29 @@ namespace
         ListNode() : val(0), next(nullptr) {}
         ListNode(int x) : val(x), next(nullptr) {}
         ListNode(int x, ListNode* next) : val(x), next(next) {}
+
+        ListNode(std::initializer_list<int> values)
+        {
+            auto it = values.begin();
+
+            if (it == values.end())
+            {
+                val = 0;
+                next = nullptr;
+                return;
+            }
+
+            val = *it++;
+            next = nullptr;
+
+            ListNode* current = this;
+
+            while (it != values.end())
+            {
+                current->next = new ListNode(*it++);
+                current = current->next;
+            }
+        }
     };
 
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
@@ -207,6 +230,21 @@ namespace
         return head.next;
     }
 
+    std::ostream& operator<<(std::ostream& os, const ListNode* node)
+    {
+        while (node)
+        {
+            os << node->val;
+
+            if (node->next)
+                os << ", ";
+
+            node = node->next;
+        }
+
+        return os;
+    }
+
     static int removeDuplicates(std::vector<int>& nums)
 	{
         if (nums.empty())
@@ -225,12 +263,40 @@ namespace
 
     	return currentNum + 1;
     }
+
+    std::ostream& operator<<(std::ostream& os, const std::vector<int>& v)
+    {
+        os << '[';
+
+        for (size_t i = 0; i < v.size(); ++i)
+        {
+            if (i > 0)
+                os << ", ";
+
+            os << v[i];
+        }
+
+        os << ']';
+
+        return os;
+    }
 }
 
 
 
 int main()
 {
-    
-    std::cout << romanToInt("MCMXCIV");
+    std::cout << std::boolalpha;
+    std::vector<int> numsSort{ 2, 7, 11,11, 15, 15 };
+    std::vector<std::string> vecString {"sasxaasas", "sasxaasa", "sasxamnhng"};
+    ListNode firstList{1,2,4};
+    ListNode secondList{ 1,3,4 };
+ 
+	std::cout << "twoSum: " << twoSum(numsSort, 18) << "\n";
+    std::cout << "isPalindrome: " << isPalindrome(11155111) << "\n";
+    std::cout << "longestCommonPrefix: " << longestCommonPrefix(vecString) << "\n";
+    std::cout << "isValid: " << isValid("{[()]}()") << "\n";
+    std::cout << "mergeTwoLists: " << mergeTwoLists(&firstList, &secondList) << "\n";
+	std::cout << "removeDuplicates: " <<removeDuplicates(numsSort) << "\n";
+    std::cout << "romanToInt: " << romanToInt("MCMXCIV") << "\n";
 }
