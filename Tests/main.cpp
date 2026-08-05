@@ -1,6 +1,4 @@
 ﻿#include <vector>
-
-
 #include <iostream>
 #include <stack>
 #include <string>
@@ -230,6 +228,85 @@ namespace
         return head.next;
     }
 
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)
+	{
+        ListNode headAdd(0);
+        ListNode* current = &headAdd;
+        int carry = 0;
+
+        while (l1 || l2 ||carry)
+        {
+            int sum = carry;
+
+        	if (l1)
+            {
+                sum += l1->val;
+                l1 = l1->next;	            
+            }
+
+            if (l2)
+            {
+                sum += l2->val;
+                l2 = l2->next;
+            }
+
+            current->next = new ListNode(sum % 10);
+            current = current->next;
+            carry = sum / 10;
+        }
+
+        return headAdd.next;
+    }
+
+    static ListNode* removeNthFromEnd(ListNode* head, int n)
+	{
+        ListNode dummy((0), head);
+
+        ListNode* fast = &dummy;
+        ListNode* slow = &dummy;
+
+
+        for (int i = 0; i <= n; ++i) fast = fast->next;
+
+        while (fast)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        ListNode* del = slow->next;
+        slow->next = del->next;
+        delete del;
+        return dummy.next;
+    }
+
+	ListNode* swapPairs(ListNode* head)
+	{
+        ListNode dummy(0, head);
+        ListNode* prev = &dummy;
+
+        while (prev->next && prev->next->next)
+        {
+            ListNode* first = prev->next;
+            ListNode* second = first->next;
+
+            first->next = second->next;
+            prev->next = second;
+            second->next = first;
+
+            prev = first;
+        }
+
+        return dummy.next;
+    }
+
+    ListNode* rotateRight(ListNode* head, int k)
+	{
+        ListNode dummy(0, head);
+        ListNode* prev = &dummy;
+
+
+    }
+
     std::ostream& operator<<(std::ostream& os, const ListNode* node)
     {
         while (node)
@@ -280,6 +357,81 @@ namespace
 
         return os;
     }
+
+    static int removeElement(std::vector<int>& nums, int val)
+	{
+        if (nums.empty())
+            return 0;
+
+        int currentNum = 0;
+
+        for (size_t i = 0; i < nums.size(); ++i)
+        {
+            if (nums[i] != val)
+            {
+                nums[currentNum] = nums[i];
+                ++currentNum;
+            }
+        }
+        return currentNum;
+    }
+
+    static int strStr(std::string haystack, std::string needle)
+	{
+        for (size_t i = 0; i < haystack.size(); ++i)
+        {
+            if (i + needle.size() > haystack.size())
+                break;
+
+	        if (haystack[i] == needle [0])
+	        {
+                size_t j = 0;
+		        for (; j < needle.size(); ++j)
+		        {
+			        if (haystack[i+j] != needle[j])
+			        {
+				        break;
+			        }
+                    
+		        }
+                if (j == needle.size())
+                    return static_cast<int>(i);
+	        }
+        }
+        return -1;
+    }
+
+    static int searchInsert(std::vector<int>& nums, int target)
+	{
+        for (size_t i = 0; i < nums.size(); ++i )
+        {
+	        if (nums[i] >= target)
+	        {
+                {
+                    return static_cast<int>(i);
+                }
+	        }
+        }
+        return static_cast<int>(nums.size());
+    }
+
+    static int lengthOfLastWord(std::string s)
+	{
+        int l = 0;
+
+        for (int i = static_cast<int>(s.size()) - 1; i >= 0; --i)
+        {
+            if (s[i] != ' ')
+            {
+                ++l;
+            }
+            else if (l > 0)
+            {
+                break;
+            }
+        }
+        return l;
+    }
 }
 
 
@@ -288,10 +440,14 @@ int main()
 {
     std::cout << std::boolalpha;
     std::vector<int> numsSort{ 2, 7, 11,11, 15, 15 };
+    std::vector<int> numsUnSort{ 0, 1, 2, 2, 3, 0, 4, 2 };
     std::vector<std::string> vecString {"sasxaasas", "sasxaasa", "sasxamnhng"};
     ListNode firstList{1,2,4};
     ListNode secondList{ 1,3,4 };
- 
+    std::string str{ "fly me to the moon " };
+    ListNode l1{ 9,9,9,9,9,8,9 };
+    ListNode l2{ 9,9,9,9 };
+#if 0
 	std::cout << "twoSum: " << twoSum(numsSort, 18) << "\n";
     std::cout << "isPalindrome: " << isPalindrome(11155111) << "\n";
     std::cout << "longestCommonPrefix: " << longestCommonPrefix(vecString) << "\n";
@@ -299,4 +455,14 @@ int main()
     std::cout << "mergeTwoLists: " << mergeTwoLists(&firstList, &secondList) << "\n";
 	std::cout << "removeDuplicates: " <<removeDuplicates(numsSort) << "\n";
     std::cout << "romanToInt: " << romanToInt("MCMXCIV") << "\n";
+    std::cout << "removeElement: " << removeElement(numsUnSort, 2) << "\n";
+    std::cout << "strStr: " << strStr("sadbutsad", "sad") << "\n";
+    std::cout << "searchInsert: " << searchInsert(numsSort,7) << "\n";
+    std::cout << "lengthOfLastWord: " << lengthOfLastWord(str) << "\n";
+    std::cout << "addTwoNumbers: " << addTwoNumbers(&l1, &l2) << "\n";
+    std::cout << "removeNthFromEnd: " << removeNthFromEnd(&l1, 2) << "\n";
+    std::cout << "swapPairs: " << swapPairs(&l1) << "\n";
+#endif
+
+    std::cout << "swapPairs: " << swapPairs(&l1) << "\n";
 }
