@@ -76,7 +76,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		Вопросы к 1 блоку.txt = Вопросы к 1 блоку.txt
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "Tests\Tests.vcxproj", "{560154F6-09FB-4E25-B480-58A0051D00BA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LeetCode", "Tests\Tests.vcxproj", "{560154F6-09FB-4E25-B480-58A0051D00BA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "projecteuler", "projecteuler\projecteuler.vcxproj", "{0CE5DF03-5A3F-4922-B26F-8043F5573F20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -366,6 +368,14 @@ Global
 		{560154F6-09FB-4E25-B480-58A0051D00BA}.Release|x64.Build.0 = Release|x64
 		{560154F6-09FB-4E25-B480-58A0051D00BA}.Release|x86.ActiveCfg = Release|Win32
 		{560154F6-09FB-4E25-B480-58A0051D00BA}.Release|x86.Build.0 = Release|Win32
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Debug|x64.ActiveCfg = Debug|x64
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Debug|x64.Build.0 = Debug|x64
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Debug|x86.ActiveCfg = Debug|Win32
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Debug|x86.Build.0 = Debug|Win32
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Release|x64.ActiveCfg = Release|x64
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Release|x64.Build.0 = Release|x64
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Release|x86.ActiveCfg = Release|Win32
+		{0CE5DF03-5A3F-4922-B26F-8043F5573F20}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

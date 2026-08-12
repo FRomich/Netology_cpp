@@ -6,6 +6,43 @@
 
 namespace
 {
+#pragma region Struct
+
+    struct ListNode
+    {
+        int val;
+        ListNode* next;
+        ListNode() : val(0), next(nullptr) {}
+        ListNode(int x) : val(x), next(nullptr) {}
+        ListNode(int x, ListNode* next) : val(x), next(next) {}
+
+        ListNode(std::initializer_list<int> values)
+        {
+            auto it = values.begin();
+
+            if (it == values.end())
+            {
+                val = 0;
+                next = nullptr;
+                return;
+            }
+
+            val = *it++;
+            next = nullptr;
+
+            ListNode* current = this;
+
+            while (it != values.end())
+            {
+                current->next = new ListNode(*it++);
+                current = current->next;
+            }
+        }
+    };
+
+#pragma endregion
+
+#pragma region Method
 
     static std::vector<int> twoSum(std::vector<int>& nums, int target)
     {
@@ -24,6 +61,8 @@ namespace
         }
         return  {};
     }
+
+
 
     static bool isPalindrome(int x)
     {
@@ -171,38 +210,6 @@ namespace
         return st.empty();
     }
 
-    struct ListNode
-	{
-        int val;
-        ListNode* next;
-        ListNode() : val(0), next(nullptr) {}
-        ListNode(int x) : val(x), next(nullptr) {}
-        ListNode(int x, ListNode* next) : val(x), next(next) {}
-
-        ListNode(std::initializer_list<int> values)
-        {
-            auto it = values.begin();
-
-            if (it == values.end())
-            {
-                val = 0;
-                next = nullptr;
-                return;
-            }
-
-            val = *it++;
-            next = nullptr;
-
-            ListNode* current = this;
-
-            while (it != values.end())
-            {
-                current->next = new ListNode(*it++);
-                current = current->next;
-            }
-        }
-    };
-
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
 	{
         ListNode head;
@@ -301,10 +308,32 @@ namespace
 
     ListNode* rotateRight(ListNode* head, int k)
 	{
-        ListNode dummy(0, head);
-        ListNode* prev = &dummy;
+        if (!head || !head->next || k == 0)
+            return head;
 
+        int length = 1;
+        ListNode* tail = head;
 
+        while (tail->next)
+        {
+            tail = tail->next;
+            ++length;
+        }
+
+        k %= length;
+        if (k == 0)
+            return head;
+
+        tail->next = head;
+
+        ListNode* newTail = head;
+        for (int i = 0; i < length - k - 1; ++i)
+            newTail = newTail->next;
+
+        ListNode* newHead = newTail->next;
+        newTail->next = nullptr;
+
+        return newHead;
     }
 
     std::ostream& operator<<(std::ostream& os, const ListNode* node)
@@ -432,9 +461,12 @@ namespace
         }
         return l;
     }
+
+#pragma endregion
+
 }
 
-
+#pragma region Main
 
 int main()
 {
@@ -462,7 +494,10 @@ int main()
     std::cout << "addTwoNumbers: " << addTwoNumbers(&l1, &l2) << "\n";
     std::cout << "removeNthFromEnd: " << removeNthFromEnd(&l1, 2) << "\n";
     std::cout << "swapPairs: " << swapPairs(&l1) << "\n";
+    std::cout << "rotateRight: " << rotateRight(&l1, 5) << "\n";
 #endif
 
-    std::cout << "swapPairs: " << swapPairs(&l1) << "\n";
+    std::cout << "rotateRight: " << rotateRight(&l1, 5) << "\n";
 }
+
+#pragma endregion
