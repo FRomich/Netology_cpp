@@ -39,7 +39,7 @@ namespace
 
         for (int i = 1; i < n; ++i)
         {
-	        if (i%3 == 0 || i % 5 == 0)
+	        if (i % 3 == 0 || i % 5 == 0)
 	        {
                 result += i;
 	        }
@@ -66,7 +66,7 @@ namespace
         {
             if (fibNext > n) break;
 
-            if (fibNext%2 == 0)
+            if (fibNext % 2 == 0)
         	result += fibNext;
 
             tmp = fibNext;
@@ -90,14 +90,14 @@ namespace
 
         for (unsigned long long i = sqrtN; i >= 5; --i)
         {
-	        if (n%i == 0)
+	        if (n % i == 0)
 	        {
                 result = i;
                 unsigned long long sqrtI = static_cast<unsigned long long>(sqrt(i));
 
 	        	for (unsigned long long j = sqrtI; j > 1; --j)
                 {
-	                if (i%j == 0)
+	                if (i % j == 0)
 	                {
                         result = 1;
 		                break;
@@ -135,7 +135,7 @@ namespace
             {
                 for (int a = 999; a > 99; --a)
                 {
-	                if (i%a == 0)
+	                if (i % a == 0)
 	                {
                         int b = i / a;
 
@@ -162,7 +162,7 @@ int main()
     std::cout << "The sum of multiples of 3 or 5 below " << countMult << ": " << sumMultiples3or5(countMult) << "\n";
     std::cout << "The sum of the even-valued fibonacci terms below " << countFib << ": " << sumFibEven(countFib) << "\n";
     std::cout << "The largest prime factor of the number " << number << ": " << largestPrimeFct(number) << "\n";
-    std::cout << "the largest palindrome made from the product of two 3-digit numbers: " << palindromeProdTwo3dgt() << "\n";
+    std::cout << "The largest palindrome made from the product of two 3-digit numbers: " << palindromeProdTwo3dgt() << "\n";
 }
 #endif
 
