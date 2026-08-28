@@ -11,17 +11,17 @@ public:
 	Counter(int count) : count(count) {}
 
 
-	void Inc()
+	void inc()
 	{
 		++count;
 	}
 
-	void Decr()
+	void decr()
 	{
 		--count;
 	}
 
-	void Print()
+	void print()
 	{
 		std::cout << "Сейчас счетчик: " << count << "\n";
 	} 
@@ -57,11 +57,11 @@ int main()
 		std::cin >> cmd;
 
 		if (cmd == "+")
-			counter.Inc();
+			counter.inc();
 		else if (cmd == "-")
-			counter.Decr();
+			counter.decr();
 		else if (cmd == "=")
-			counter.Print();
+			counter.print();
 		else if (cmd != "x")
 			std::cout << "Неизвестная команда\n";
 
