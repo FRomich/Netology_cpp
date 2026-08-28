@@ -4,17 +4,12 @@
 class Counter
 {
 private:
-    int count = 0;
+    int count;
 public:
-	Counter()
-	{
-		count = 1;
-	}
 
-	Counter(int count)
-	{
-		this->count = count;
-	}
+	Counter() : count(1) {}
+	Counter(int count) : count(count) {}
+
 
 	void Inc()
 	{
