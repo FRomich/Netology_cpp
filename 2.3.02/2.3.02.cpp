@@ -21,9 +21,9 @@ public:
 
     std::string getOutputAddress() const
     {
-        return town + " "
-            + street + " "
-            + std::to_string(numberHouse) + " "
+        return town + ", "
+            + street + ", "
+            + std::to_string(numberHouse) + ", "
             + std::to_string(numberApartment) + "\n";
     }
 
