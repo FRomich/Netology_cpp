@@ -66,6 +66,8 @@ int main()
         );
     }
 
+    inFile.close();
+
     std::ofstream outFile(outputPath);
 
     outFile << count << "\n";
@@ -75,11 +77,16 @@ int main()
         outFile << addresses[i - 1]->getOutputAddress();
     }
 
+    outFile.close();
+
     for (unsigned i = 0; i < count; ++i)
     {
         delete addresses[i];
     }
 
     delete[] addresses;
+
+    std::cout << "Данные записаны в файл: " << outputPath << "\n";
+
 }
 

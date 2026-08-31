@@ -82,6 +82,8 @@ int main()
         );
     }
 
+    inFile.close();
+
     sort(addresses, count);
 
     std::ofstream outFile(outputPath);
@@ -93,11 +95,15 @@ int main()
         outFile << addresses[i]->getOutputAddress();
     }
 
+    outFile.close();
+
     for (unsigned i = 0; i < count; ++i)
     {
         delete addresses[i];
     }
 
     delete[] addresses;
+
+    std::cout << "Данные отсортированы и записаны в файл: " << outputPath << "\n";
 }
 
