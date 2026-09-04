@@ -42,7 +42,7 @@ public:
 
 class Triangle : public Shape
 {
-protected:
+private:
 	int lengthA, lengthB, lengthC;
 	int angleA, angleB, angleC;
 
