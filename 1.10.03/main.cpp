@@ -49,7 +49,6 @@ namespace
     }       
 }
 
-
 int main()
 {
     std::setlocale(LC_ALL, "Russian");
