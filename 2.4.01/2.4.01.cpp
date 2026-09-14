@@ -3,14 +3,15 @@
 class Shape
 {
 private:
-	int numSides;
+	std::string name{"Фигура"};
+	int numSides{ 0 };
 
 protected:
-	Shape(int num) : numSides(num)
+	Shape(std::string name_, int num_) : name(name_), numSides(num_)
 	{}
 
 public:
-	Shape() : numSides{ 0 }
+	Shape()
 	{}
 
 	int getNumSides()
@@ -20,36 +21,20 @@ public:
 
 	std::string getName()
 	{
-		return "Фигура";
+		return name;
 	} 
 };
 
 class Triangle: public Shape
 {
-private:
-	std::string name{};
-
 public:
-	Triangle() : Shape(3), name{"Треугольник"} {}
-
-	std::string getName()
-	{
-		return name;
-	}
+	Triangle() : Shape("Треугольник", 3){}
 };
 
 class Quad : public Shape
 {
-private:
-	std::string name{};
-
 public:
-	Quad() : Shape(4), name { "Четырёхугольник" } {}
-
-	std::string getName()
-	{
-		return name;
-	}
+	Quad() : Shape("Четырёхугольник", 4){}
 };
 
 

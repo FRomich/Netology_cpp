@@ -18,11 +18,6 @@ public:
 		return name;
 	}
 
-	void setName(std::string name)
-	{
-		this->name = name;
-	}
-
 	virtual void printInfo() const = 0;
 };
 
@@ -32,12 +27,18 @@ private:
 	int lengthA, lengthB, lengthC;
 	int angleA, angleB, angleC;
 
-public:
-	Triangle(int a, int b, int c, int A, int B, int C) : Shape("Треугольник"),
+protected:
+	Triangle(std::string name_,
+			int a, int b, int c,
+			int A, int B, int C)
+		: Shape(name_),
 		lengthA(a),lengthB(b),lengthC(c),
 		angleA(A), angleB(B), angleC(C)
 	{}
 
+public:
+	Triangle(int a, int b, int c, int A, int B, int C)
+		: Triangle("Треугольник", a, b, c, A, B, C){}
 	void printInfo() const override
 	{
 		std::cout << getName() << ":\n"
@@ -49,28 +50,22 @@ public:
 class RightTriangle : public Triangle
 {
 public:
-	RightTriangle(int a, int b, int c, int A, int B) : Triangle(a, b ,c, A, B, 90)
-	{
-		setName("Прямоугольный треугольник");
-	}
+	RightTriangle(int a, int b, int c, int A, int B)
+		: Triangle("Прямоугольный треугольник",	a, b, c, A, B, 90){}
 };
 
 class IsoscelesTriangle : public Triangle
 {
 public:
-	IsoscelesTriangle(int a, int b, int A, int B) : Triangle(a, b, a, A, B, A)
-	{
-		setName("Равнобедренный треугольник");
-	}
+	IsoscelesTriangle(int a, int b, int A, int B)
+	: Triangle("Равнобедренный треугольник", a, b, a, A, B, A){	}
 };
 
 class EquilateralTriangle : public Triangle
 {
 public:
-	EquilateralTriangle(int a) : Triangle(a, a, a, 60, 60, 60)
-	{
-		setName("Равносторонний треугольник");
-	}
+	EquilateralTriangle(int a)
+	: Triangle("Равносторонний треугольник",a, a, a, 60, 60, 60)	{}
 };
 
 
@@ -80,12 +75,20 @@ private:
 	int lengthA, lengthB, lengthC, lengthD;
 	int angleA, angleB, angleC, angleD;
 
-public:
-	Quad(int a, int b, int c, int d, int A, int B, int C, int D) : Shape("Четырёхугольник"),
+protected:
+	Quad(std::string name_,
+			int a, int b, int c, int d,
+			int A, int B, int C, int D)
+	: Shape(name_),
 		lengthA(a), lengthB(b), lengthC(c), lengthD(d),
 		angleA(A), angleB(B), angleC(C), angleD(D)
 	{
 	}
+
+public:
+	Quad(int a, int b, int c, int d, int A, int B, int C, int D)
+		: Quad("Четырёхугольник",
+		a, b, c, d,	A, B, C, D){}
 
 	void printInfo() const override
 	{
@@ -97,29 +100,32 @@ public:
 
 class Parallelogram : public Quad
 {
+protected:
+	Parallelogram(std::string name_, int a, int b, int A, int B)
+	: Quad(name_, a, b, a, b, A, B, A, B){}
+
 public:
-	Parallelogram (int a, int b, int A, int B) : Quad(a, b, a, b, A, B, A, B)
-	{
-		setName("Параллелограмм");
-	}
+	Parallelogram (int a, int b, int A, int B)
+	: Parallelogram("Параллелограмм", a, b, A, B){}
 };
 
 class  Rhombus : public  Parallelogram
 {
-public:
-	Rhombus(int a, int A, int B) : Parallelogram(a, a, A, B)
+protected:
+	Rhombus(std::string name_, int a, int A, int B) : Parallelogram(name_, a, a, A, B)
 	{
-		setName("Ромб");
+	}
+
+public:
+	Rhombus(int a, int A, int B) : Rhombus("Ромб", a, A, B)
+	{
 	}
 };
 
 class Square : public Rhombus
 {
 public:
-	Square(int a) : Rhombus(a, 90, 90)
-	{
-		setName("Квадрат:");
-	}
+	Square(int a) : Rhombus("Квадрат", a, 90, 90){}
 };
 
 void print_info(Shape* shape)
