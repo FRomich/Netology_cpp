@@ -30,6 +30,6 @@ int main()
 
 int function(std::string str, int forbidden_length)
 {
-	if (str.length() == forbidden_length) throw "forbidden length";
+	if (str.length() == forbidden_length) throw std::runtime_error("Длина строки не совпадает с ожидаемой");
 	return static_cast<int>(str.length());
 }
