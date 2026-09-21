@@ -19,9 +19,9 @@ int main()
 		{
 			length = function(str, forbidden);
 		}
-		catch (...)
+		catch (const std::invalid_argument& e)
 		{
-			std::cout << "Вы ввели слово запретной длины! До свидания\n";
+			std::cout << e.what() << " До свидания\n";
 			return 1;
 		}
 		std::cout << "Длина слова \"" << str << "\" равна " << length << "\n";
@@ -30,6 +30,6 @@ int main()
 
 int function(std::string str, int forbidden_length)
 {
-	if (str.length() == forbidden_length) throw std::runtime_error("Длина строки не совпадает с ожидаемой");
+	if (str.length() == forbidden_length) throw std::invalid_argument("Вы ввели слово запретной длины!");
 	return static_cast<int>(str.length());
 }
