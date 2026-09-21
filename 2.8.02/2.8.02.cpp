@@ -28,7 +28,7 @@ public:
 		denominator_ /= nod;
 	}
 
-	std::string Print() const
+	std::string print() const
 	{
 		return std::to_string(numerator_) + "/" + std::to_string(denominator_);
 	}
@@ -136,13 +136,13 @@ int main()
 	Fraction a{ numA, denomA };
 	Fraction b{ numB, denomB };
 
-    std::cout << a.Print() << " + " << b.Print() << " = " << (a + b).Print() << "\n";
-	std::cout << a.Print() << " - " << b.Print() << " = " << (a - b).Print() << "\n";
-	std::cout << a.Print() << " * " << b.Print() << " = " << (a * b).Print() << "\n";
-	std::cout << a.Print() << " / " << b.Print() << " = " << (a / b).Print() << "\n";
-	std::cout << "++" << a.Print() << " * " << b.Print() << " = " << (++a * b).Print() << "\n";
-	std::cout << "Значение дроби 1: " << a.Print() << "\n";
-	std::cout << a.Print() << "--" << " * " << b.Print() << " = " << (a-- * b).Print() << "\n";
-	std::cout << "Значение дроби 1: " << a.Print() << "\n";
+    std::cout << a.print() << " + " << b.print() << " = " << (a + b).print() << "\n";
+	std::cout << a.print() << " - " << b.print() << " = " << (a - b).print() << "\n";
+	std::cout << a.print() << " * " << b.print() << " = " << (a * b).print() << "\n";
+	std::cout << a.print() << " / " << b.print() << " = " << (a / b).print() << "\n";
+	std::cout << "++" << a.print() << " * " << b.print() << " = " << (++a * b).print() << "\n";
+	std::cout << "Значение дроби 1: " << a.print() << "\n";
+	std::cout << a.print() << "--" << " * " << b.print() << " = " << (a-- * b).print() << "\n";
+	std::cout << "Значение дроби 1: " << a.print() << "\n";
 }
 
