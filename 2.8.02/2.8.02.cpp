@@ -28,7 +28,7 @@ public:
 		denominator_ /= nod;
 	}
 
-	std::string Print()
+	std::string Print() const
 	{
 		return std::to_string(numerator_) + "/" + std::to_string(denominator_);
 	}
@@ -63,24 +63,24 @@ public:
 		return !(*this > other);
 	}
 
-	Fraction operator + (const Fraction other) const
+	Fraction operator + (const Fraction& other) const
 	{
 		return Fraction(numerator_ * other.denominator_ + other.numerator_ * denominator_,
 			denominator_ * other.denominator_);
 	}
 
-	Fraction operator - (const Fraction other) const
+	Fraction operator - (const Fraction& other) const
 	{
 		return Fraction(numerator_ * other.denominator_ - other.numerator_ * denominator_,
 			denominator_ * other.denominator_);
 	}
 
-	Fraction operator * (const Fraction other) const
+	Fraction operator * (const Fraction& other) const
 	{
 		return Fraction(numerator_ * other.numerator_, denominator_ * other.denominator_);
 	}
 
-	Fraction operator / (const Fraction other) const
+	Fraction operator / (const Fraction& other) const
 	{
 		return Fraction(numerator_ * other.denominator_, denominator_ * other.numerator_);
 	}
@@ -102,14 +102,14 @@ public:
 		return *this;
 	}
 
-	Fraction& operator ++(int)
+	Fraction operator ++(int)
 	{
 		Fraction old = *this;
 		numerator_ += denominator_;
 		return old;
 	}
 
-	Fraction& operator --(int)
+	Fraction operator --(int)
 	{
 		Fraction old = *this;
 		numerator_ -= denominator_;
