@@ -7,16 +7,16 @@ private:
 	int numerator_;
 	int denominator_;
 
-	int NOD(int denomA, int denomB) const
+	int NOD(int numA, int numB) const
 	{
-		while (denomB != 0)
+		while (numB != 0)
 		{
-			int temp = denomB;
-			denomB = denomA % denomB;
-			denomA = temp;
+			int temp = numB;
+			numB = numA % numB;
+			numA = temp;
 		}
 
-		return denomA;
+		return numA;
 	}
 
 public:
