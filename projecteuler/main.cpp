@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 
+#include "simple-bench.h"
+
 /// <summary>
 /// https://projecteuler.net/archives
 /// </summary>
@@ -152,6 +154,8 @@ namespace
 
 int main()
 {
+    struct timespec time1, time2;
+
     int countSQ = 667000;
     int countMult = 1000;
     int countFib = 4000000;
@@ -165,6 +169,14 @@ int main()
     std::cout << "The largest palindrome made from the product of two 3-digit numbers: " << palindromeProdTwo3dgt() << "\n";
 }
 #endif
+
+	simple_gettime(&time1);
+    for (int i = 0; i < 100; ++i) 
+    {
+        palindromeProdTwo3dgt();
+    }
+    simple_gettime(&time2);
+    std::cout << diff(time1, time2) << "\n";
 
     std::cout << "the largest palindrome made from the product of two 3-digit numbers: " << palindromeProdTwo3dgt() << "\n";
 }

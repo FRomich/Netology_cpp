@@ -1,0 +1,5 @@
+USA:3
+Canada:2
+Germany:2
+France:1
+Italy:1

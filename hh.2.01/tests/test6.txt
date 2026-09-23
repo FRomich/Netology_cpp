@@ -1,0 +1,8 @@
+Smith;1980;USA;AF470
+Brown;1980;Canada;AF000
+Jones;1980;Germany;ZZ777
+Petrov;1980;France;af470
+Ivanov;1980;Spain;A1470
+Sidorov;1980;Italy;AAA70
+Volkov;1980;Japan;AB888
+Kozlov;1980;China;AB78

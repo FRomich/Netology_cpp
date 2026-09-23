@@ -1,0 +1,5 @@
+Smith1;1980;USA;AF470
+Brown;1950;Canada;BC123
+Jones;1980;none;CD777
+Petrov;1980;Germany;AB888
+Smith-Jones;1980;France;EF456

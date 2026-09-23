@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0ce5df03-5a3f-4922-b26f-8043f5573f20}</ProjectGuid>
-    <RootNamespace>projecteuler</RootNamespace>
+    <ProjectGuid>{0cac3e08-2df8-47ad-aa5f-a7fa0cc08acb}</ProjectGuid>
+    <RootNamespace>hh201</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Projecteuler</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -124,10 +123,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="hh.2.01.cpp" />
+    <ClCompile Include="ProcessingFreelancers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="simple-bench.h" />
+    <Text Include="tests\test1.txt" />
+    <Text Include="tests\test1_expected.txt" />
+    <Text Include="tests\test2.txt" />
+    <Text Include="tests\test2_expected.txt" />
+    <Text Include="tests\test3.txt" />
+    <Text Include="tests\test3_expected.txt" />
+    <Text Include="tests\test4.txt" />
+    <Text Include="tests\test4_expected.txt" />
+    <Text Include="tests\test5.txt" />
+    <Text Include="tests\test5_expected.txt" />
+    <Text Include="tests\test6.txt" />
+    <Text Include="tests\test6_expected.txt" />
+    <Text Include="tests\test7.txt" />
+    <Text Include="tests\test7_expected.txt" />
+    <Text Include="tests\test8.txt" />
+    <Text Include="tests\test8_expected.txt" />
+    <Text Include="tests\test9.txt" />
+    <Text Include="tests\test9_expected.txt" />
+    <Text Include="Задача.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProcessingFreelancers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,6 @@
+Smith;1980;USA;AF470
+Brown;1980;U;BC123
+Jones;1980;United States;CD777
+Petrov;1980;Russia1;EF456
+Ivanov;1980;Rus-sia;GH012
+Sidorov;1980;none;IJ345

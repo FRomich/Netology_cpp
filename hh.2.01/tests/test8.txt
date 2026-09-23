@@ -1,0 +1,9 @@
+Smith;1980;USA;AF470
+Brown;1981;USA;BC123
+Jones;1982;USA;CD777
+Petrov;1983;Canada;EF456
+Ivanov;1984;Canada;GH012
+Sidorov;1985;Germany;IJ345
+Volkov;1986;Germany;KL456
+Kozlov;1987;France;MN567
+Orlov;1988;Italy;OP670

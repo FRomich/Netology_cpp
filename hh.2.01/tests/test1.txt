@@ -1,0 +1,5 @@
+Smith;1980;USA;AF470
+Brown;1990;USA;BC123
+Ivanov;1985;Canada;CD777
+Jones;1975;Germany;EF456
+Petrov;2000;Canada;GH012
