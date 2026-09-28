@@ -15,6 +15,10 @@ project ("2.10.03")
 add_library(2.10.02_dynamic_lib SHARED "../2.10.02_dynamic_lib/Leaver.h"
 	"../2.10.02_dynamic_lib/Leaver.cpp")
 
+# Устанавливаем SHAPELIBRARYDYNAMIC_EXPORTS
+target_compile_definitions(2.10.02_dynamic_lib PRIVATE
+    LEAVERLIBRARYDYNAMIC_EXPORTS)
+
 # Добавьте источник в исполняемый файл этого проекта.
 add_executable (2.10.03 "2.10.03.cpp" )
 
