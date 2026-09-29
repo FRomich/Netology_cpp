@@ -1,5 +1,5 @@
-#include "all_terrain_boots.h"
+п»ї#include "all_terrain_boots.h"
 
-my_racing::AllTerrainBoots::AllTerrainBoots() : GroundVehicles(6, "Ботинки-вездеходы", 60, 10.0, 5.0, 5.0)
+my_racing::AllTerrainBoots::AllTerrainBoots() : GroundVehicles(6, "Р‘РѕС‚РёРЅРєРё-РІРµР·РґРµС…РѕРґС‹", 60, 10.0, 5.0, 5.0)
 {
 }

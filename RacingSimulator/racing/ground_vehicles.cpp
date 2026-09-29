@@ -1,4 +1,4 @@
-#include "ground_vehicles.h"
+﻿#include "ground_vehicles.h"
 #include <cmath>
 
 double my_racing::GroundVehicles::getTimeRacing(int distance) const

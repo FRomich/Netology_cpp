@@ -1,4 +1,4 @@
-#include "vehicle.h"
+п»ї#include "vehicle.h"
 
 namespace my_racing
 {
@@ -12,13 +12,13 @@ namespace my_racing
         switch (type)
         {
         case TypeVehicle::ground:
-            return "Наземный";
+            return "РќР°Р·РµРјРЅС‹Р№";
 
         case TypeVehicle::air:
-            return "Воздушный";
+            return "Р’РѕР·РґСѓС€РЅС‹Р№";
 
         default:
-            return "Неизвестный";
+            return "РќРµРёР·РІРµСЃС‚РЅС‹Р№";
         }
     }
 

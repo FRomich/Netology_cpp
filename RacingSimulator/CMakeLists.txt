@@ -7,7 +7,7 @@ endif()
 
 project ("RacingSimulator")
 
-add_subdirectory(Racing)
+add_subdirectory(racing)
 
 add_executable (RacingSimulator "RacingSimulator.cpp" )
 

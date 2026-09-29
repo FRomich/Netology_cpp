@@ -1,7 +1,7 @@
-#include "broom.h"
+п»ї#include "broom.h"
 
 my_racing::Broom::Broom()
-    : AirVehicles(20, "Метла")
+    : AirVehicles(20, "РњРµС‚Р»Р°")
 {
 }
 

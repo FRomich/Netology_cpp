@@ -1,4 +1,4 @@
-#include "race.h"
+п»ї#include "race.h"
 
 #include <algorithm>
 #include <iomanip>
@@ -79,16 +79,16 @@ namespace my_racing
         switch (type)
         {
         case RaceType::Ground:
-            return "Гонка для наземного транспорта";
+            return "Р“РѕРЅРєР° РґР»СЏ РЅР°Р·РµРјРЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°";
 
         case RaceType::Air:
-            return "Гонка для воздушного транспорта";
+            return "Р“РѕРЅРєР° РґР»СЏ РІРѕР·РґСѓС€РЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°";
 
         case RaceType::Mixed:
-            return "Гонка для наземного и воздушного транспорта";
+            return "Р“РѕРЅРєР° РґР»СЏ РЅР°Р·РµРјРЅРѕРіРѕ Рё РІРѕР·РґСѓС€РЅРѕРіРѕ С‚СЂР°РЅСЃРїРѕСЂС‚Р°";
 
         default:
-            return "Неизвестный тип гонки";
+            return "РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РіРѕРЅРєРё";
         }
     }
 
@@ -144,7 +144,7 @@ namespace my_racing
         {
             oss << i + 1 << ". "
                 << results[i].first
-                << " Время: "
+                << " Р’СЂРµРјСЏ: "
                 << std::fixed << std::setprecision(2)
                 << results[i].second
                 << "\n";

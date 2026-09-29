@@ -1,7 +1,7 @@
-#include "carpet_plane.h"
+п»ї#include "carpet_plane.h"
 
 my_racing::CarpetPlane::CarpetPlane()
-    : AirVehicles(10, "Ковер-самолет")
+    : AirVehicles(10, "РљРѕРІРµСЂ-СЃР°РјРѕР»РµС‚")
 {
 }
 

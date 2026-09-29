@@ -1,10 +1,14 @@
-#include "console_renderer.h"
+п»ї#include "console_renderer.h"
 
 #include <iostream>
 
 void my_racing::ConsoleRenderer::clear()
 {
+#ifdef _WIN32
     system("cls");
+#else
+    system("clear");
+#endif
 }
 
 void my_racing::ConsoleRenderer::draw(const Race& race)
@@ -12,20 +16,20 @@ void my_racing::ConsoleRenderer::draw(const Race& race)
     std::string screen;
 
     screen += "====================================\n";
-    screen += "       ГОНОЧНЫЙ СИМУЛЯТОР\n";
+    screen += "      Р“РћРќРћР§РќР«Р™ РЎРРњРЈР›РЇРўРћР \n";
     screen += "====================================\n";
     screen += "    " + race.getTypeName() + "\n";
     screen += "====================================\n";
     if (race.getDistanse() > 0) 
-        screen += "Дистанция: " + std::to_string(race.getDistanse()) + " км\n";
+        screen += "Р”РёСЃС‚Р°РЅС†РёСЏ: " + std::to_string(race.getDistanse()) + " РєРј\n";
     if ( race.getCountVehicles() > 0)
-    screen += "Участники: " + race.showVehicles() + "\n";
+    screen += "РЈС‡Р°СЃС‚РЅРёРєРё: " + race.showVehicles() + "\n";
     screen += "====================================\n";
-    screen += "Статус: " + race.getStatus() + "\n";
+    screen += "РЎС‚Р°С‚СѓСЃ: " + race.getStatus() + "\n";
     screen += "====================================\n";
     if (!race.getResult().empty())
     {
-        screen += "Результаты гонки: \n";
+        screen += "Р РµР·СѓР»СЊС‚Р°С‚С‹ РіРѕРЅРєРё: \n";
         screen += race.getResult();
         screen += "====================================\n";
     }

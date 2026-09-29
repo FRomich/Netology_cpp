@@ -1,6 +1,6 @@
-#include "camel.h"
+ο»Ώ#include "camel.h"
 
-my_racing::Camel::Camel() : GroundVehicles(10, "Βεπαλώδ", 30, 5.0, 8.0, 8.0)
+my_racing::Camel::Camel() : GroundVehicles(10, "Π’ΠµΡ€Π±Π»ΡΠ΄", 30, 5.0, 8.0, 8.0)
 {}
 
 

@@ -1,10 +1,18 @@
 #pragma once
 #include <string>
 
+#ifdef _WIN32
+
 #ifdef RACINGLIBRARYDYNAMIC_EXPORTS
 #define RACINGLIBRARY __declspec(dllexport)
 #else
 #define RACINGLIBRARY __declspec(dllimport)
+#endif
+
+#else
+
+#define RACINGLIBRARY
+
 #endif
 
 namespace my_racing

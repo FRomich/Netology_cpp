@@ -1,8 +1,16 @@
 ﻿#include <iostream>
 #include <memory>
 #include <stdlib.h>
-#include <vector>
+#include <limits>
+#include <clocale>
+
+
+#ifdef _WIN32
 #include <conio.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
 
 #include "all_terrain_boots.h"
 #include "broom.h"
@@ -21,13 +29,15 @@ int setDistance();
 
 void registerVehicles(my_racing::Race& race);
 
+int getKey();
+
 int main()
 {
-	setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "");
 
     std::cout << "Добро пожаловать в гоночный симулятор!\n";
     std::cout << "Для продолжения нажмите любую клавишу...\n";
-    _getch();
+    getKey();
 
     while (true)
     {
@@ -49,7 +59,7 @@ int main()
         my_racing::ConsoleRenderer::draw(race);
 
         std::cout << "Для проведения гонки нажмите любую клавишу...\n";
-        _getch();
+        getKey();
 
         race.start();
 
@@ -57,7 +67,7 @@ int main()
 
         std::cout << "Для выхода нажмите \"ESC\", для повторения гонки любую клавишу\n";
 
-        int key = _getch();
+        int key = getKey();
 
         if (key == 27) // ESC
         {
@@ -137,6 +147,7 @@ void registerVehicles(my_racing::Race& race)
     std::cout << "5. Ковер-самолет\n";
     std::cout << "6. Орел\n";
     std::cout << "7. Метла\n";
+
     std::cout << "0. Выход\n";
 
     std::cout << "Выберите транспорт или 0 для окончания регистрации: ";
@@ -202,4 +213,26 @@ void registerVehicles(my_racing::Race& race)
     {
         race.setStatus("Попытка зарегистрировать неправильный тип транспортного средства.");
     }
+}
+
+int getKey()
+{
+#ifdef _WIN32
+    return _getch();
+#else
+    struct termios oldt, newt;
+
+    tcgetattr(STDIN_FILENO, &oldt);
+
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
+    int key = getchar();
+
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+
+    return key;
+#endif
 }

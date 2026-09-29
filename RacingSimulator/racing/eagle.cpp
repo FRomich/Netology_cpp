@@ -1,7 +1,7 @@
-#include "eagle.h"
+ï»¿#include "eagle.h"
 
 my_racing::Eagle::Eagle()
-    : AirVehicles(8, "Îð¸ë")
+    : AirVehicles(8, "ÐžÑ€Ñ‘Ð»")
 {
 }
 

@@ -44,7 +44,9 @@ namespace my_racing {
 
         RaceType getType() const;
         std::string getTypeName() const;
+
         int getDistanse() const;
+
         std::size_t getCountVehicles() const;
 
         void setStatus(std::string);
