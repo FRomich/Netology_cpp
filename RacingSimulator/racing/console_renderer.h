@@ -1,6 +1,6 @@
 #pragma once
 #include "race.h"
-#include "vehicle.h"
+
 
 namespace my_racing {
 	class RACINGLIBRARY ConsoleRenderer

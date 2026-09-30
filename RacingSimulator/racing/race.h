@@ -19,9 +19,9 @@ namespace my_racing {
 	{
 	private:
         RaceType type;
-        int distance;
+        int distance {0};
         std::vector<std::unique_ptr<Vehicle>> vehicles;
-        std::string status;
+        std::string status {};
         std::string raceResults {};
 
 	public:
@@ -40,7 +40,7 @@ namespace my_racing {
 
         bool isRegistered(const Vehicle& vehicle) const;
 
-        std::string showVehicles() const;
+        std::vector<std::string> getVehicleNames() const;
 
         RaceType getType() const;
         std::string getTypeName() const;

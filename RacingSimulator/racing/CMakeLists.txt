@@ -1,8 +1,5 @@
-cmake_minimum_required (VERSION 3.10)
-
-project (Racing)
-
 add_library(Racing SHARED
+    "racing_export.h"
     "vehicle.cpp" "vehicle.h"
     "ground_vehicles.h" "ground_vehicles.cpp" 
     "air_vehicles.h" "air_vehicles.cpp"
@@ -14,7 +11,7 @@ add_library(Racing SHARED
     "eagle.h" "eagle.cpp"
     "broom.h" "broom.cpp"
     "race.h" "race.cpp"
-    "console_renderer.h" "console_renderer.cpp")
+    "console_renderer.h" "console_renderer.cpp" )
 
 target_compile_definitions(Racing PRIVATE
     RACINGLIBRARYDYNAMIC_EXPORTS

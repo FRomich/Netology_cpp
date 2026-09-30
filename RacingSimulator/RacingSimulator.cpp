@@ -1,16 +1,7 @@
 ﻿#include <iostream>
 #include <memory>
-#include <stdlib.h>
-#include <limits>
+#include <cstdlib>
 #include <clocale>
-
-
-#ifdef _WIN32
-#include <conio.h>
-#else
-#include <termios.h>
-#include <unistd.h>
-#endif
 
 #include "all_terrain_boots.h"
 #include "broom.h"
@@ -21,53 +12,65 @@
 #include "fast_camel.h"
 #include "race.h"
 #include "vehicle.h"
-#include "console_renderer.h"
+#include "race_view.h"
 
-void setRaceType(my_racing::RaceType& raceType);
+#include "consoleUI.h"
 
-int setDistance();
 
-void registerVehicles(my_racing::Race& race);
+void setRaceType(my_racing::RaceType& raceType, IUI& ui);
+
+int setDistance(IUI& ui);
+
+void registerVehicles(my_racing::Race& race, IUI& ui);
 
 int getKey();
+
+RaceView makeRaceView(const my_racing::Race& race);
 
 int main()
 {
     setlocale(LC_ALL, "");
 
-    std::cout << "Добро пожаловать в гоночный симулятор!\n";
-    std::cout << "Для продолжения нажмите любую клавишу...\n";
-    getKey();
+    std::unique_ptr<IUI> ui = std::make_unique<ConsoleUI>();
+
+    ui->clear();
+
+    ui->show("Добро пожаловать в гоночный симулятор!\n");
+
+    ui->show("Для продолжения нажмите любую клавишу...\n");
+    ui->getAnyKey();
 
     while (true)
     {
+        ui->clear();
+
         my_racing::RaceType raceType;
 
-        setRaceType(raceType);
+        setRaceType(raceType, *ui);
 
-        int distance = setDistance();
+        int distance = setDistance(*ui);
 
         my_racing::Race race(raceType, distance);
 
-        while (race.getCountVehicles() < 2 || race.getStatus() != "Список участников сформирован")
+        while (race.getCountVehicles() < 2 || race.getStatus() != "Список участников сформирован") //поправить на enum
         {
-            my_racing::ConsoleRenderer::draw(race);
+            ui->draw(makeRaceView(race));
 
-            registerVehicles(race);
+            registerVehicles(race, *ui);
         }
 
-        my_racing::ConsoleRenderer::draw(race);
+        ui->draw(makeRaceView(race));
 
-        std::cout << "Для проведения гонки нажмите любую клавишу...\n";
-        getKey();
+        ui->show("Для продолжения нажмите любую клавишу...\n");
+        ui->getAnyKey();
 
         race.start();
 
-        my_racing::ConsoleRenderer::draw(race);
+        ui->draw(makeRaceView(race));
 
-        std::cout << "Для выхода нажмите \"ESC\", для повторения гонки любую клавишу\n";
+        ui->show("Для выхода нажмите \"ESC\", для повторения гонки любую клавишу\n");
 
-        int key = getKey();
+        int key = ui->getKey();
 
         if (key == 27) // ESC
         {
@@ -77,19 +80,16 @@ int main()
 	return EXIT_FAILURE;
 }
 
-void setRaceType(my_racing::RaceType& raceType)
+void setRaceType(my_racing::RaceType& raceType, IUI& ui)
 {
-	int choice;
-    my_racing::ConsoleRenderer::clear();
-
 	while (true)
 	{
-		std::cout << "1. Гонка для наземного транспорта\n";
-		std::cout << "2. Гонка для воздушного транспорта\n";
-		std::cout << "3. Гонка для наземного и воздушного транспорта\n";
-		std::cout << "Выберите тип гонки: ";
+        ui.show("1. Гонка для наземного транспорта\n");
+        ui.show("2. Гонка для воздушного транспорта\n");
+        ui.show("3. Гонка для наземного и воздушного транспорта\n");
+        ui.show("Выберите тип гонки: ");
 
-		std::cin >> choice;
+        int choice = ui.getInt();
 
 		switch (choice)
 		{
@@ -106,52 +106,44 @@ void setRaceType(my_racing::RaceType& raceType)
 			break;
 
 		default:
-			std::cout << "Неверный выбор. Попробуйте ещё раз.\n\n";
+            ui.show("Неверный выбор. Попробуйте ещё раз.\n\n");
 			continue;
 		}
 		break;
 	}
 };
 
-int setDistance()
+int setDistance(IUI& ui)
 {
-    int result;
-
     while (true)
     {
-        std::cout << "Укажите длину дистанции (должна быть положительной): ";
+        ui.show("Укажите длину дистанции (должна быть положительной): ");
 
-        if (std::cin >> result && result > 0)
+        int result = ui.getInt();
+
+        if (result > 0)
         {
             return result;
         }
 
-        std::cout << "Некорректное значение. Попробуйте ещё раз.\n";
-
-        std::cin.clear();
-        std::cin.ignore(
-            std::numeric_limits<std::streamsize>::max(),
-            '\n'
-        );
+        ui.show("Некорректное значение. Попробуйте ещё раз.\n");
     }
 }
 
-void registerVehicles(my_racing::Race& race)
+void registerVehicles(my_racing::Race& race, IUI& ui)
 {
-    int choice;
-
-    std::cout << "\n1. Верблюд\n";
-    std::cout << "2. Быстрый верблюд\n";
-    std::cout << "3. Кентавр\n";
-    std::cout << "4. Вездеходные ботинки\n";
-    std::cout << "5. Ковер-самолет\n";
-    std::cout << "6. Орел\n";
-    std::cout << "7. Метла\n";
-
-    std::cout << "0. Выход\n";
-
-    std::cout << "Выберите транспорт или 0 для окончания регистрации: ";
-    std::cin >> choice;
+    ui.show(
+        "\n1. Верблюд\n"
+        "2. Быстрый верблюд\n"
+        "3. Кентавр\n"
+        "4. Вездеходные ботинки\n"
+        "5. Ковер-самолет\n"
+        "6. Орел\n"
+        "7. Метла\n"
+        "\n0. Выход\n"
+        "Выберите транспорт или 0 для окончания регистрации: "
+    );
+    int choice = ui.getInt();
 
     std::unique_ptr<my_racing::Vehicle> vehicle;
 
@@ -215,24 +207,15 @@ void registerVehicles(my_racing::Race& race)
     }
 }
 
-int getKey()
+RaceView makeRaceView(const my_racing::Race& race)
 {
-#ifdef _WIN32
-    return _getch();
-#else
-    struct termios oldt, newt;
+    RaceView view;
 
-    tcgetattr(STDIN_FILENO, &oldt);
+    view.raceType = race.getTypeName();
+    view.distance = race.getDistanse();
+    view.vehicles = race.getVehicleNames();
+    view.status = race.getStatus();
+    view.result = race.getResult();
 
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-
-    int key = getchar();
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-
-    return key;
-#endif
+    return view;
 }

@@ -54,19 +54,16 @@ namespace my_racing
         return true;
     }
 
-    std::string Race::showVehicles() const
+    std::vector<std::string> Race::getVehicleNames() const
     {
-        std::string result{};
+        std::vector<std::string> names;
 
-        for (size_t i = 0; i < vehicles.size(); ++i)
+        for (const auto& vehicle : vehicles)
         {
-            if (i > 0)
-                result += ", ";
-
-            result += vehicles[i]->getName();
+            names.push_back(vehicle->getName());
         }
 
-        return result;
+        return names;
     }
 
     RaceType Race::getType() const

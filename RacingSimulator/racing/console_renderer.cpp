@@ -23,7 +23,7 @@ void my_racing::ConsoleRenderer::draw(const Race& race)
     if (race.getDistanse() > 0) 
         screen += "Дистанция: " + std::to_string(race.getDistanse()) + " км\n";
     if ( race.getCountVehicles() > 0)
-    screen += "Участники: " + race.showVehicles() + "\n";
+   // screen += "Участники: " + race.showVehicles() + "\n";
     screen += "====================================\n";
     screen += "Статус: " + race.getStatus() + "\n";
     screen += "====================================\n";

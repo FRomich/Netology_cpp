@@ -8,11 +8,14 @@ endif()
 project ("RacingSimulator")
 
 add_subdirectory(racing)
+add_subdirectory(ui)
+add_subdirectory(сonsoleUI)
 
-add_executable (RacingSimulator "RacingSimulator.cpp" )
+add_executable (RacingSimulator "RacingSimulator.cpp" "ui/race_view.h")
 
 target_link_libraries(RacingSimulator PRIVATE
     Racing
+    ConsoleUI
 )
 
 target_include_directories(RacingSimulator PRIVATE
@@ -26,5 +29,11 @@ endif()
 add_custom_command(TARGET RacingSimulator POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         $<TARGET_FILE:Racing>
+        $<TARGET_FILE_DIR:RacingSimulator>
+)
+
+add_custom_command(TARGET RacingSimulator POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:ConsoleUI>
         $<TARGET_FILE_DIR:RacingSimulator>
 )
