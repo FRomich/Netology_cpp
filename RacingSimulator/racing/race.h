@@ -10,22 +10,45 @@
 namespace my_racing {
     enum class RaceType
     {
-        Ground = 1,
+        None,
+        Ground,
         Air,
         Mixed
+    };
+
+    enum class StageRace
+    {
+        SelectRaceType,
+        SetDistance,
+        RegisterVehicles,
+        Ready,
+        Results
+    };
+
+    enum class Message
+    {
+        None,
+        NotEnoughVehicles,
+        InvalidValue,
+        InvalidChoice,
+        Reregistration,
+        Registration,
+        IncorrectTransportType,
+        RegistrationCompleted
     };
 
 	class RACINGLIBRARY Race
 	{
 	private:
-        RaceType type;
+        RaceType type {RaceType::None};
         int distance {0};
         std::vector<std::unique_ptr<Vehicle>> vehicles;
-        std::string status {};
-        std::string raceResults {};
+        StageRace stage {StageRace::SelectRaceType}; //этап
+        Message message {Message::None}; //сообщение
+        std::string raceResults {}; //переделать
 
 	public:
-        Race(RaceType type, int distance);
+        Race();
 
         Race(const Race&) = delete;
         Race& operator=(const Race&) = delete;
@@ -33,27 +56,32 @@ namespace my_racing {
         Race(Race&&) = default;
         Race& operator=(Race&&) = default;
 
+        bool canRegister(const Vehicle&) const;
 
-        bool canRegister(const Vehicle& vehicle) const;
+        bool registerVehicle(std::unique_ptr<Vehicle>);
 
-        bool registerVehicle(std::unique_ptr<Vehicle> vehicle);
-
-        bool isRegistered(const Vehicle& vehicle) const;
+        bool isRegistered(const Vehicle&) const;
 
         std::vector<std::string> getVehicleNames() const;
 
         RaceType getType() const;
         std::string getTypeName() const;
+        void setType(RaceType);
 
         int getDistanse() const;
+        void setDistanse(int);
 
         std::size_t getCountVehicles() const;
-
-        void setStatus(std::string);
-        std::string getStatus() const;
 
         std::string getResult() const;
 
         void start();
+        
+        std::string getStageName() const;
+        void setStage(StageRace);
+
+        std::string getMessageName() const;
+        Message getMessage() const;
+        void setMessage(Message);
 	};
 }

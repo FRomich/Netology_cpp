@@ -1,5 +1,6 @@
-#include "consoleUI.h"
+ï»¿#include "consoleUI.h"
 #include <iostream>
+#include <limits>
 
 #ifdef _WIN32
 #include <conio.h>
@@ -70,7 +71,7 @@ int ConsoleUI::getInt()
             '\n'
         );
 
-        std::cout << "Ââåäèòå öåëîå ÷èñëî: ";
+        std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾: ";
     }
 
     return value;
@@ -82,22 +83,25 @@ void ConsoleUI::draw(const RaceView& view)
 
     std::cout
         << "====================================\n"
-        << "      ÃÎÍÎ×ÍÛÉ ÑÈÌÓËßÒÎÐ\n"
-        << "====================================\n";
+        << "      Ð“ÐžÐÐžÐ§ÐÐ«Ð™ Ð¡Ð˜ÐœÐ£Ð›Ð¯Ð¢ÐžÐ \n";
 
-    std::cout << "Òèï ãîíêè: " << view.raceType << '\n';
+    if (!view.raceType.empty())
+    std::cout
+		<< "====================================\n"
+		<< "Ð¢Ð¸Ð¿ Ð³Ð¾Ð½ÐºÐ¸: " << view.raceType << '\n';
 
     if (view.distance > 0)
     {
-        std::cout << "Äèñòàíöèÿ: "
-            << view.distance
-            << " êì\n";
+        std::cout
+            << "====================================\n"
+    		<< "Ð”Ð¸ÑÑ‚Ð°Ð½Ñ†Ð¸Ñ: " << view.distance << " ÐºÐ¼\n";
     }
 
     if (!view.vehicles.empty())
     {
-        std::cout << "Ó÷àñòíèêè:\n";
-
+        std::cout
+            << "====================================\n"
+            << "Ð£Ñ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ¸:\n";
         for (const auto& vehicle : view.vehicles)
         {
             std::cout << "  " << vehicle << '\n';
@@ -106,14 +110,23 @@ void ConsoleUI::draw(const RaceView& view)
 
     std::cout
         << "====================================\n"
-        << "Ñòàòóñ: " << view.status << '\n'
-        << "====================================\n";
+        << "Ð­Ñ‚Ð°Ð¿: " << view.stage << '\n';
+
+    if (!view.message.empty())
+    {
+        std::cout
+            << "====================================\n"
+            << "Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ: " << view.message << '\n';
+    }
 
     if (!view.result.empty())
     {
-        std::cout << "Ðåçóëüòàòû ãîíêè:\n"
-            << view.result
-            << "====================================\n";
+        std::cout
+            << "====================================\n"
+            << "Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚Ñ‹ Ð³Ð¾Ð½ÐºÐ¸:\n" << view.result;
+
     }
+
+    std::cout << "====================================\n";
 }
 

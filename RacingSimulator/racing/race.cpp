@@ -6,8 +6,7 @@
 
 namespace my_racing
 {
-    Race::Race(RaceType setType, int setDistance)
-        : type(setType), distance(setDistance)
+    Race::Race()    
     {
     }
 
@@ -71,6 +70,12 @@ namespace my_racing
         return type;
     }
 
+    void Race::setType(RaceType setType)
+    {
+        type = setType;
+        stage = StageRace::SetDistance;
+    };
+
     std::string Race::getTypeName() const
     {
         switch (type)
@@ -85,7 +90,7 @@ namespace my_racing
             return "Гонка для наземного и воздушного транспорта";
 
         default:
-            return "Неизвестный тип гонки";
+            return "";
         }
     }
 
@@ -94,19 +99,78 @@ namespace my_racing
         return distance;
     };
 
+    void Race::setDistanse(int dist)
+    {
+        distance = dist;
+        stage = StageRace::RegisterVehicles;
+    }
+
     std::size_t Race::getCountVehicles() const
     {
         return static_cast<int>(vehicles.size());
     }
 
-    void Race::setStatus(std::string setStatus)
+    void Race::setStage(StageRace setStage)
     {
-        status = setStatus;
+        stage = setStage;
     }
 
-    std::string Race::getStatus() const
+
+    std::string Race::getStageName() const
     {
-        return status;
+	    switch (stage)
+	    {
+	    case StageRace::SelectRaceType:
+            return "Настройка типа гонки";
+
+	    case StageRace::SetDistance:
+            return "Настройка дистанции гонки";
+
+	    case StageRace::RegisterVehicles:
+            return "Регистрация участников";
+
+	    case StageRace::Ready:
+            return "Все готово к гонке";
+
+	    case StageRace::Results:
+            return "Гонка проведена";
+	    }
+    }
+
+    Message Race::getMessage() const
+    {
+        return message;
+    }
+
+
+    std::string Race::getMessageName() const
+    {
+        switch (message)
+        {
+        case Message::None:
+            return "";
+
+        case Message::InvalidValue:
+            return "Некорректное значение";
+
+        case Message::InvalidChoice:
+            return "Неверный выбор";
+
+        case Message::NotEnoughVehicles:
+            return "Недостаточно транспортных средств";
+
+        case Message::Reregistration:
+            return "Повторная регистрация участника";
+
+        case Message::Registration:
+            return "Успешная регистрация участника";
+
+        case Message::IncorrectTransportType:
+            return "Некорректный тип траспортного средства";
+
+        case Message::RegistrationCompleted:
+            return "Список участников сформирован";
+        }
     }
 
     std::string Race::getResult() const
@@ -144,13 +208,17 @@ namespace my_racing
                 << " Время: "
                 << std::fixed << std::setprecision(2)
                 << results[i].second
-                << "\n";
+                << '\n';
         }
 
         raceResults = oss.str();
 
     }
 
+    void Race::setMessage(Message setMessage)
+    {
+        message = setMessage;
+    }
 
 
 }

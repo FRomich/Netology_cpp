@@ -11,7 +11,8 @@ add_library(Racing SHARED
     "eagle.h" "eagle.cpp"
     "broom.h" "broom.cpp"
     "race.h" "race.cpp"
-    "console_renderer.h" "console_renderer.cpp" )
+)
+
 
 target_compile_definitions(Racing PRIVATE
     RACINGLIBRARYDYNAMIC_EXPORTS

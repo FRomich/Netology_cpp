@@ -17,7 +17,7 @@
 #include "consoleUI.h"
 
 
-void setRaceType(my_racing::RaceType& raceType, IUI& ui);
+my_racing::RaceType setRaceType(IUI& ui);
 
 int setDistance(IUI& ui);
 
@@ -32,37 +32,33 @@ int main()
     setlocale(LC_ALL, "");
 
     std::unique_ptr<IUI> ui = std::make_unique<ConsoleUI>();
-
-    ui->clear();
-
-    ui->show("Добро пожаловать в гоночный симулятор!\n");
-
-    ui->show("Для продолжения нажмите любую клавишу...\n");
-    ui->getAnyKey();
-
+    
     while (true)
     {
-        ui->clear();
+        my_racing::Race race;
 
-        my_racing::RaceType raceType;
+        ui->draw(makeRaceView(race));
 
-        setRaceType(raceType, *ui);
+        race.setType(setRaceType(*ui));
 
-        int distance = setDistance(*ui);
+        ui->draw(makeRaceView(race));
 
-        my_racing::Race race(raceType, distance);
+        race.setDistanse(setDistance(*ui));
 
-        while (race.getCountVehicles() < 2 || race.getStatus() != "Список участников сформирован") //поправить на enum
+        while (race.getCountVehicles() < 2 ||
+            race.getMessage() != my_racing::Message::RegistrationCompleted) 
         {
-            ui->draw(makeRaceView(race));
+            ui->draw(makeRaceView(race)); 
 
             registerVehicles(race, *ui);
         }
 
+        race.setStage(my_racing::StageRace::Ready); 
+
         ui->draw(makeRaceView(race));
 
-        ui->show("Для продолжения нажмите любую клавишу...\n");
-        ui->getAnyKey();
+        ui->show("Для проведения гонки нажмите любую клавишу...\n");
+        ui->getAnyKey(); //ok
 
         race.start();
 
@@ -80,7 +76,7 @@ int main()
 	return EXIT_FAILURE;
 }
 
-void setRaceType(my_racing::RaceType& raceType, IUI& ui)
+my_racing::RaceType setRaceType(IUI& ui)
 {
 	while (true)
 	{
@@ -94,22 +90,16 @@ void setRaceType(my_racing::RaceType& raceType, IUI& ui)
 		switch (choice)
 		{
 		case 1:
-			raceType = my_racing::RaceType::Ground;
-			break;
-
+			return  my_racing::RaceType::Ground;
 		case 2:
-			raceType = my_racing::RaceType::Air;
-			break;
-
+            return my_racing::RaceType::Air;
 		case 3:
-			raceType = my_racing::RaceType::Mixed;
-			break;
+            return my_racing::RaceType::Mixed;
 
 		default:
             ui.show("Неверный выбор. Попробуйте ещё раз.\n\n");
 			continue;
 		}
-		break;
 	}
 };
 
@@ -177,33 +167,38 @@ void registerVehicles(my_racing::Race& race, IUI& ui)
         vehicle = std::make_unique<my_racing::Broom>();
         break;
 
-    case 0:
+    	case 0:
+
         if (race.getCountVehicles() < 2) 
-            race.setStatus("Должно быть не менее 2 участников");
-        else 
-            race.setStatus("Список участников сформирован");
+            race.setMessage(my_racing::Message::NotEnoughVehicles);
+        else
+        {
+	        race.setMessage(my_racing::Message::RegistrationCompleted);            
+        }
+            
         return;
 
     default:
-        race.setStatus("Неверный выбор.");
+        race.setMessage(my_racing::Message::InvalidValue);
         return;
+
     }
 
     std::string name = vehicle->getName();
 
     if (race.isRegistered(*vehicle))
     {
-        race.setStatus(name + " уже зарегистрирован.");
+        race.setMessage(my_racing::Message::Reregistration);
         return;
     }
 
     if (race.registerVehicle(std::move(vehicle)))
     {
-        race.setStatus(name + " успешно зарегистрирован.");
+        race.setMessage(my_racing::Message::Registration);
     }
     else
     {
-        race.setStatus("Попытка зарегистрировать неправильный тип транспортного средства.");
+        race.setMessage(my_racing::Message::IncorrectTransportType);
     }
 }
 
@@ -214,7 +209,8 @@ RaceView makeRaceView(const my_racing::Race& race)
     view.raceType = race.getTypeName();
     view.distance = race.getDistanse();
     view.vehicles = race.getVehicleNames();
-    view.status = race.getStatus();
+    view.stage = race.getStageName();
+    view.message = race.getMessageName();
     view.result = race.getResult();
 
     return view;

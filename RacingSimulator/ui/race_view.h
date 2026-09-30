@@ -7,6 +7,7 @@ struct RaceView
     std::string raceType;
     int distance{};
     std::vector<std::string> vehicles;
-    std::string status;
+    std::string stage;
+    std::string message;
     std::string result;
 };
