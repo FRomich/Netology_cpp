@@ -41,10 +41,12 @@ int main()
         ui->draw(makeRaceView(race));
 
         race.setType(setRaceType(*ui));
+        race.setStage(my_racing::StageRace::SetDistance);
 
         ui->draw(makeRaceView(race));
 
         race.setDistanse(setDistance(*ui));
+        race.setStage(my_racing::StageRace::RegisterVehicles);
 
         while (race.getCountVehicles() < 2 ||
             race.getMessage() != my_racing::Message::RegistrationCompleted) 
@@ -62,6 +64,7 @@ int main()
         ui->getAnyKey(); //ok
 
         race.start();
+        race.setStage(my_racing::StageRace::Results);
 
         ui->draw(makeRaceView(race));
 

@@ -73,7 +73,6 @@ namespace my_racing
     void Race::setType(RaceType setType)
     {
         type = setType;
-        stage = StageRace::SetDistance;
     };
 
     std::string Race::getTypeName() const
@@ -102,7 +101,6 @@ namespace my_racing
     void Race::setDistanse(int dist)
     {
         distance = dist;
-        stage = StageRace::RegisterVehicles;
     }
 
     std::size_t Race::getCountVehicles() const
@@ -135,6 +133,7 @@ namespace my_racing
 	    case StageRace::Results:
             return "Гонка проведена";
 	    }
+        return "";
     }
 
     Message Race::getMessage() const
@@ -171,6 +170,7 @@ namespace my_racing
         case Message::RegistrationCompleted:
             return "Список участников сформирован";
         }
+        return "";
     }
 
     std::string Race::getResult() const
@@ -180,6 +180,7 @@ namespace my_racing
 
     void Race::start()
     {
+        message = Message::None;
         std::vector<std::pair<std::string, double>> results;
 
 	    for (const auto& registeredVehicle : vehicles)
