@@ -12,7 +12,7 @@
 #include "fast_camel.h"
 #include "race.h"
 #include "vehicle.h"
-#include "IUI.h"
+#include "iui.h"
 
 #include "consoleUI.h"
 
