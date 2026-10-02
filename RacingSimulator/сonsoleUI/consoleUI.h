@@ -3,20 +3,23 @@
 #include "consoleUI_export.h"
 #include "iui.h"
 
-class CONSOLEUILIBRARY ConsoleUI : public IUI
+namespace my_consol
 {
-public:
-    ConsoleUI();
+    class CONSOLEUILIBRARY ConsoleUI : public IUI
+    {
+    public:
+        ConsoleUI();
 
-    void clear() override;
+        void clear() override;
 
-    void show(std::string_view text) override;
+        void show(std::string_view text) override;
 
-    int getKey() override;
+        int getKey() override;
 
-    void getAnyKey() override;
+        void getAnyKey() override;
 
-    int getInt() override;
+        int getInt() override;
 
-    void draw(const RaceView& view) override;
-};
+        void draw(const RaceView& view) override;
+    };
+}

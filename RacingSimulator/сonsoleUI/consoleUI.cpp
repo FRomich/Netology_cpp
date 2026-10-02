@@ -9,11 +9,11 @@
 #include <unistd.h>
 #endif
 
-ConsoleUI::ConsoleUI()
+my_consol::ConsoleUI::ConsoleUI()
 {
 }
 
-void ConsoleUI::clear()
+void my_consol::ConsoleUI::clear()
 { 
 #ifdef _WIN32
     system("cls");
@@ -22,12 +22,12 @@ void ConsoleUI::clear()
 #endif
 }
 
-void ConsoleUI::show(std::string_view text)
+void my_consol::ConsoleUI::show(std::string_view text)
 {
     std::cout << text;
 }
 
-int ConsoleUI::getKey()
+int my_consol::ConsoleUI::getKey()
 {
 #ifdef _WIN32
     return _getch(); 
@@ -50,7 +50,7 @@ int ConsoleUI::getKey()
 #endif
 }
 
-void ConsoleUI::getAnyKey()
+void my_consol::ConsoleUI::getAnyKey()
 {
 #ifdef _WIN32
     _getch();
@@ -59,7 +59,7 @@ void ConsoleUI::getAnyKey()
 #endif
 }
 
-int ConsoleUI::getInt()
+int my_consol::ConsoleUI::getInt()
 {
     int value;
 
@@ -77,7 +77,7 @@ int ConsoleUI::getInt()
     return value;
 }
 
-void ConsoleUI::draw(const RaceView& view)
+void my_consol::ConsoleUI::draw(const RaceView& view)
 {
     clear();
 

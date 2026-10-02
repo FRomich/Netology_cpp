@@ -12,11 +12,9 @@
 #include "fast_camel.h"
 #include "race.h"
 #include "vehicle.h"
-#include "race_view.h"
+#include "IUI.h"
 
 #include "consoleUI.h"
-
-//test GitHub Actions
 
 my_racing::RaceType setRaceType(IUI& ui);
 
@@ -32,7 +30,7 @@ int main()
 {
     setlocale(LC_ALL, "");
 
-    std::unique_ptr<IUI> ui = std::make_unique<ConsoleUI>();
+    std::unique_ptr<IUI> ui = std::make_unique<my_consol::ConsoleUI>();
     
     while (true)
     {
