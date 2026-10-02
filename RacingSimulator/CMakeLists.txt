@@ -11,7 +11,7 @@ add_subdirectory(racing)
 add_subdirectory(ui)
 add_subdirectory(сonsoleUI)
 
-add_executable (RacingSimulator "RacingSimulator.cpp" "ui/IUI.h")
+add_executable (RacingSimulator "RacingSimulator.cpp" "ui/iui.h")
 
 target_link_libraries(RacingSimulator PRIVATE
     Racing
