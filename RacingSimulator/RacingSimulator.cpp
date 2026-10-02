@@ -59,7 +59,7 @@ int main()
         ui->draw(makeRaceView(race));
 
         ui->show("Для проведения гонки нажмите любую клавишу...\n");
-        ui->getAnyKey(); //ok
+        ui->getAnyKey(); 
 
         race.start();
         race.setStage(my_racing::StageRace::Results);
@@ -70,7 +70,7 @@ int main()
 
         int key = ui->getKey();
 
-        if (key == 27) // ESC
+        if (key == 27) 
         {
             return EXIT_SUCCESS;
         }

@@ -43,9 +43,9 @@ namespace my_racing {
         RaceType type {RaceType::None};
         int distance {0};
         std::vector<std::unique_ptr<Vehicle>> vehicles;
-        StageRace stage {StageRace::SelectRaceType}; //этап
-        Message message {Message::None}; //сообщение
-        std::string raceResults {}; //переделать
+        StageRace stage {StageRace::SelectRaceType};
+        Message message {Message::None};
+        std::string raceResults {}; 
 
 	public:
         Race();
