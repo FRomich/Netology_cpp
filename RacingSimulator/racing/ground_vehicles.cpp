@@ -3,7 +3,7 @@
 
 double my_racing::GroundVehicles::getTimeRacing(int distance) const
 {
-	double time = static_cast<double>(distance) / Vehicle::getSpeed() * 60.0;
+	double time = static_cast<double>(distance) / Vehicle::getSpeed();
 
 	int countRest = static_cast<int>(time / timeToRest);
 
