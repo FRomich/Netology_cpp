@@ -1,7 +1,4 @@
-﻿// 3.6.01.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 
 int simple_string_hash(std::string str) {
     int sum = 0;
