@@ -1,25 +1,32 @@
 ﻿#include <iostream>
+namespace
+{
+    static int simple_string_hash(const std::string& str)
+    {
+        int sum = 0;
 
-int simple_string_hash(std::string str) {
-    int sum = 0;
+        for (auto s : str) {
+            sum += s;
+        }
 
-    for (auto s : str) {
-        sum += s;
+        return sum;
     }
 
-    return sum;
-}
-
-unsigned long long real_string_hash(std::string str, unsigned long long p, unsigned long long k) {
-    size_t size = str.size();
-    unsigned long long sum = 0;
-    
-    for (size_t idx = 0; idx < size; ++idx)
+    static unsigned long long real_string_hash(const std::string& str, unsigned long long p, unsigned long long k)
     {
-        sum += str[idx] * std::pow(p, idx);
-    };
+        unsigned long long sum = 0;
+        unsigned long long p_power = 1;
 
-    return sum % k;
+        for (char c : str)
+        {
+            unsigned long long char_val = static_cast<unsigned char>(c);
+
+            sum = (sum + char_val * p_power) % k;
+            p_power = (p_power * p) % k;
+        }
+
+        return sum;
+    }
 }
 
 int main()
