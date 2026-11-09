@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <string>
 
 int simple_string_hash(std::string str, int count) {
     
@@ -57,7 +58,7 @@ int main()
     std::string str, substr;
 
     std::cout << "Enter the string in which the search will be performed: ";
-    std::cin >> str;
+    std::getline(std::cin, str);
 
     while (true)
     {
