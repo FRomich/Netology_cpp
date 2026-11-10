@@ -67,6 +67,7 @@ int main()
     if (numVertics > n && n < 1)
     {
         std::cout << "invalid vertex number";
+        return 1;
     }
 
     std::vector<int> visited;
@@ -78,5 +79,7 @@ int main()
     {
         std::cout << visited[i] + 1 << " ";
     }
+
+    return 0;
 }
 
