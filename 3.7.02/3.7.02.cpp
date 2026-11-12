@@ -3,30 +3,31 @@
 #include <vector>
 #include <queue>
 
-void bfs(int start, const std::vector<std::vector<int>>& adj, std::vector<int>& visited)
+namespace
 {
-   
-    std::queue<int> frontier;
-    std::vector<bool> flags(adj.size(), false);
-
-
-    flags[start] = true;
-    frontier.push(start);
-
-
-    while (!frontier.empty()) 
+    static void bfs(int start, const std::vector<std::vector<int>>& adj, std::vector<int>& visited)
     {
-        int node = frontier.front();
-        frontier.pop();
 
-        visited.push_back(node);
+        std::queue<int> frontier;
+        std::vector<bool> flags(adj.size(), false);
 
-        for (int next = 0; next < adj[node].size(); ++next)
+        flags[start] = true;
+        frontier.push(start);
+
+        while (!frontier.empty())
         {
-            if (adj[node][next] && !flags[next])
+            int node = frontier.front();
+            frontier.pop();
+
+            visited.push_back(node);
+
+            for (int next = 0; next < adj[node].size(); ++next)
             {
-                flags[next] = true;
-                frontier.push(next);
+                if (adj[node][next] && !flags[next])
+                {
+                    flags[next] = true;
+                    frontier.push(next);
+                }
             }
         }
     }

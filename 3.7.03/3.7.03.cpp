@@ -2,40 +2,42 @@
 #include <fstream>
 #include <vector>
 
-bool dfs(const std::vector<std::vector<int>>& adj, int v, std::vector<bool>& visited, int prev)
+namespace
 {
-    visited[v] = true;
-
-    for (int i = 0; i < adj.size(); ++i) 
+    static bool dfs(const std::vector<std::vector<int>>& adj, int v, std::vector<bool>& visited, int prev)
     {
-        if (adj[v][i] == 0)
-            continue;
+        visited[v] = true;
 
-        if (!visited[i])
+        for (int i = 0; i < adj.size(); ++i)
         {
-            if (dfs(adj, i, visited, v))
+            if (adj[v][i] == 0)
+                continue;
+
+            if (!visited[i])
+            {
+                if (dfs(adj, i, visited, v))
+                    return true;
+            }
+            else if (i != prev)
+            {
                 return true;
+            }
         }
-        else if (i != prev)
-        {
-            return true;
-        }
+        return false;
     }
-    return false;
-}
 
-bool hasCycle(const std::vector<std::vector<int>>& adj)
-{
-    std::vector<bool> visited (adj.size(), false);
-
-    for(int v = 0; v < adj.size(); ++v)
+    static bool hasCycle(const std::vector<std::vector<int>>& adj)
     {
-        if (!visited[v])
-            if (dfs(adj, v, visited, -1))
-                return true;
-    }
-    return false;
+        std::vector<bool> visited(adj.size(), false);
 
+        for (int v = 0; v < adj.size(); ++v)
+        {
+            if (!visited[v])
+                if (dfs(adj, v, visited, -1))
+                    return true;
+        }
+        return false;
+    }
 }
 
 
